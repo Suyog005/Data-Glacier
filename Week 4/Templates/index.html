@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>House Price Predictor</title>
+    <style>
+        /* Base styles */
+        * {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #4d79ff, #33ccff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Card container */
+        .card {
+            background-color: #ffffff;
+            width: 420px;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 1s ease-in-out;
+            text-align: center;
+        }
+
+        /* Header styles */
+        .card-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-header img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .card-header h1 {
+            color: #333;
+            font-size: 1.8em;
+            margin-top: 10px;
+        }
+
+        /* Form styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 0.9em;
+            color: #333;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #4d79ff;
+            box-shadow: 0 0 8px rgba(77, 121, 255, 0.3);
+        }
+
+        button {
+            padding: 12px;
+            font-size: 1em;
+            color: white;
+            background-color: #4d79ff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #3359cc;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+            background-color: #e6f2ff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <!-- Card header with logo and title -->
+        <div class="card-header">
+            <img src="https://seeklogo.com/images/H/HOUSE_M_D_-logo-74D2723197-seeklogo.com.png" alt="House Logo">
+            <h1>House Price Predictor</h1>
+        </div>
+
+        <form action="{{ url_for('predict') }}" method="post" class="info">
+            <label for="income">Average Area Income</label>
+            <input type="text" id="income" name="Average Income of Area" required />
+
+            <label for="age">Average House Age</label>
+            <input type="text" id="age" name="Average House Age" required />
+
+            <label for="rooms">Average Number of Rooms</label>
+            <input type="text" id="rooms" name="Average Number of Rooms" required />
+
+            <label for="bedrooms">Average Number of Bedrooms</label>
+            <input type="text" id="bedrooms" name="Average Number of Bedrooms" required />
+
+            <label for="population">Average Area Population</label>
+            <input type="text" id="population" name="Average Area Population" required />
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <!-- Placeholder for prediction output -->
+        <div class="result">
+            <p><b>{{ prediction_text }}</b></p>
+        </div>
+    </div>
+</body>
+
+</html>
